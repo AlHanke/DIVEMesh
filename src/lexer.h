@@ -209,6 +209,8 @@ public:
     double *S61_xs,*S61_xe,*S61_ys,*S61_ye,*S61_zs,*S61_ze;
     double *S62_xs,*S62_xe,*S62_ys,*S62_ye,*S62_zs,*S62_ze;
     double *S63_xs,*S63_xe,*S63_ys,*S63_ye,*S63_zs,*S63_ze;
+    int S71;
+    double *S71_xs,*S71_xe,*S71_ys,*S71_ye,*S71_zs,*S71_alpha;
     int S81;
     double **S81_xyz;
     int S82;

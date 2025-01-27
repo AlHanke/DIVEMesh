@@ -198,6 +198,9 @@ void lexer::solid_preproc()
 	
 	for(n=0;n<S63;++n)
 	trinum_solid+=10;
+
+    for(n=0;n<S71;++n)
+	trinum_solid+=10;
     
     for(n=0;n<S81;++n)
 	trinum_solid+=4;

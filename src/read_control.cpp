@@ -501,6 +501,9 @@ void lexer::read_control()
 				case 63: ++S63;
 						 clear(c,numint);
 						 break;
+                case 71: ++S71;
+						 clear(c,numint);
+						 break;
                case 81: ++S81;
 						 clear(c,numint);
 						 break;
@@ -1001,6 +1004,13 @@ void lexer::read_control()
 	S63_ye = new double[S63];
 	S63_zs = new double[S63];
 	S63_ze = new double[S63];
+
+    S71_xs = new double[S71];
+	S71_xe = new double[S71];
+	S71_ys = new double[S71];
+	S71_ye = new double[S71];
+    S71_zs = new double[S71];
+	S71_alpha = new double[S71];
     
     Darray(S81_xyz,S81,12);
     
@@ -1273,6 +1283,7 @@ void lexer::read_control()
 	int countS61=0;
 	int countS62=0;
 	int countS63=0;
+    int countS71=0;
     int countS81=0;
     int countS82=0;
     int countS83=0;
@@ -1446,6 +1457,10 @@ void lexer::read_control()
 						 break;
 				case 63: control>>S63_xs[countS63]>>S63_xe[countS63]>>S63_ys[countS63]>>S63_ye[countS63]>>S63_zs[countS63]>>S63_ze[countS63];
                         ++countS63;
+						 clear(c,numint);
+						 break;
+                case 71: control>>S71_xs[countS71]>>S71_xe[countS71]>>S71_ys[countS71]>>S71_ye[countS71]>>S71_zs[countS71]>>S71_alpha[countS71];
+                        ++countS71;
 						 clear(c,numint);
 						 break;
                case 81: for(int qn=0;qn<12;++qn)

@@ -247,6 +247,13 @@ void solid::start(lexer* p, dive* a)
         ray_cast(p,a,tri_start,tri_end,a->solid,a->solid_dist,a->solidbed);
         }
 
+        for(qn=0;qn<p->S71;++qn)
+        {
+        wedge_x_angle(p,a,qn,tri_start,tri_end,p->S71_xs[qn],p->S71_xe[qn],p->S71_ys[qn],p->S71_ye[qn],p->S71_zs[qn],p->S71_alpha[qn]);
+        rotate_triangle(p,a,tri_start,tri_end);
+        ray_cast(p,a,tri_start,tri_end,a->solid,a->solid_dist,a->solidbed);
+        }
+
         for(qn=0;qn<p->S81;++qn)
         {
         tetrahedon(p,a,qn,tri_start,tri_end,p->S81_xyz);
