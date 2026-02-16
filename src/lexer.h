@@ -374,7 +374,7 @@ public:
 	
 	double xs_stl,xe_stl,ys_stl,ye_stl,zs_stl,ze_stl;
 	
-	int solidprint,topoprint,porousprint;
+	int solidprint,topoprint;
 
     double xstart,xend,ystart,yend,zstart,zend;
     double xstep,zstep;
