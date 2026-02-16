@@ -40,7 +40,7 @@ class lexer : public resize_class, public coordinates
 public:
 
 	lexer();
-	virtual ~lexer();
+	virtual ~lexer() = default;
     
     void read_input();
     void read_preproc();

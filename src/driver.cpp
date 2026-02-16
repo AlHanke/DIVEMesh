@@ -26,23 +26,23 @@ Author: Hans Bihs
 
 driver::driver()
 {
-	cout<<endl<<endl;
-	cout<<"DIVEMesh (c) 2008-2026 Hans Bihs"<<endl<<endl;
+    cout<<endl<<endl;
+    cout<<"DIVEMesh (c) 2008-2026 Hans Bihs"<<endl<<endl;
 
-	cout<<":: Open-Source Meshing"<<endl<<endl;
+    cout<<":: Open-Source Meshing"<<endl<<endl;
     cout<<endl<<"v_260708" <<endl<<endl;
 
     mkdir("./DIVEMesh_Log",0777);
     
     
-	p = new lexer();
+    p = new lexer();
     
     p->read_input();
     p->read_preproc();
     
-	a = new dive(p);
+    a = new dive(p);
     
-	logic(p);
+    logic(p);
 }
 
 driver::~driver()
@@ -55,82 +55,81 @@ void driver::mainloop()
 
     pini->start(p,a);
 
-// Geometry Pipeline
-    //Solid
-        // geodat
-        // STL
-        // solids
-    //Topo
-        // geodat
-        // STL
-        // solids
+    // Geometry Pipeline
+        //Solid
+            // geodat
+            // STL
+            // solids
+        //Topo
+            // geodat
+            // STL
+            // solids
 
-// Geodata
+    // Geodata
     if(p->G10>0 && p->G9==1)
     pgeo->start(p,a,a->topobed,a->topo_dist);
 
     if(p->G10>0 && p->G9==2)
     pgeo->start(p,a,a->solidbed,a->solid_dist);
 
-	if(p->D10>0)
+    if(p->D10>0)
     pdata->start(p,a);
 
-// Topo
-	if(p->topo_count>0)
-	ptopo->start(p,a);
+    // Topo
+    if(p->topo_count>0)
+    ptopo->start(p,a);
 
     if(p->topo_count>0)
-	{
-	print_stl print_topo(p,a);
+    {
+        print_stl print_topo(p,a);
 
-	print_topo.topo_vtp(p,a);
-	if(p->S6==1)
-	print_topo.topo_stl(p,a);
-	}
+        print_topo.topo_vtp(p,a);
+        if(p->S6==1)
+        print_topo.topo_stl(p,a);
+    }
 
-// Solid
+    // Solid
     if(p->S1==1)
-	p->read_stl();
+    p->read_stl();
 
-	if(p->solid_count>0||p->S1==1)
-	psolid->start(p,a);
+    if(p->solid_count>0||p->S1==1)
+    psolid->start(p,a);
 
-	if(p->solid_count>0||p->S1==1)
-	{
-	print_stl print_solid(p,a);
+    if(p->solid_count>0||p->S1==1)
+    {
+        print_stl print_solid(p,a);
 
-	print_solid.solid_vtp(p,a);
-	if(p->S6==1)
-	print_solid.solid_stl(p,a);
-    
-    print_stl_geodat print_geo(p,a);
-    if(p->S90==1)
-    print_geo.print_geo(p,a);
-	}
+        print_solid.solid_vtp(p,a);
+        if(p->S6==1)
+        print_solid.solid_stl(p,a);
 
-// Slice
+        print_stl_geodat print_geo(p,a);
+        if(p->S90==1)
+        print_geo.print_geo(p,a);
+    }
+
+    // Slice
     pslice->start(p,a);
 
-// Bedlevel
+    // Bedlevel
     pbed->start(p,a);
 
-// Decomp
+    // Decomp
     pdd->start(p,a);
 
     pbc->makebc(p,a);
     psurf->start(p,a);
 
-// GCB Estimate
-	if(p->topo_count>0 || (p->G10>0&&p->G9==1))
-	ptopo->gcb_estimate(p,a);
+    // GCB Estimate
+    if(p->topo_count>0 || (p->G10>0&&p->G9==1))
+    ptopo->gcb_estimate(p,a);
 
     if(p->solid_count>0 || p->S1==1 || (p->G10>0&&p->G9==2))
-	psolid->gcb_estimate(p,a);
+    psolid->gcb_estimate(p,a);
 
     psurf->gcb_estimate(p,a);
 
-
-// Hydrodynamic Coupling
+    // Hydrodynamic Coupling
     if(p->H10>0)
     phdc->start(p,a);
 

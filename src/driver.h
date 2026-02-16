@@ -33,17 +33,14 @@ using namespace std;
 class driver : public increment
 {
 public:
-
     driver();
     virtual ~driver();
     void mainloop();
-	void logic(lexer*);
-	void analytics(lexer*,dive*);
-	
-	int conlev(int);
+    void logic(lexer*);
+    void analytics(lexer*,dive*);
 
-	lexer *p;
-	dive *a;
+    lexer *p;
+    dive *a;
     printer *pprint;
     printer *pvtu;
     surface *psurf;
@@ -54,32 +51,29 @@ public:
     objects *pobj;
     box *pbox;
     geodat *pgeo;
-	dataset *pdata;
-	objects_geometry *objgeo;
-	print_objects *objprint;
-	solid *psolid;
+    dataset *pdata;
+    objects_geometry *objgeo;
+    print_objects *objprint;
+    solid *psolid;
     topo *ptopo;
     slice *pslice;
     bedlevel *pbed;
     hdc *phdc;
 
-	//driver ();
+    double **input;
+    double *header;
+    int **boundary;
+    int **surf_in;
+    int **surf_out;
+    int **surf_fsf;
+    int **surf_wall;
+    int **surf_bed;
 
-	double **input;
-	double *header;
-	int **boundary;
-	int **surf_in;
-	int **surf_out;
-	int **surf_fsf;
-	int **surf_wall;
-	int **surf_bed;
-	
-	int **flagmg;
-	int l,h;
-	int cellnum;
-	
-	ofstream mgout;
+    int **flagmg;
+    int l,h;
+    int cellnum;
+
+    ofstream mgout;
 };
-
 
 #endif

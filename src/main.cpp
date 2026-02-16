@@ -22,13 +22,9 @@ Author: Hans Bihs
 
 #include"main.h"
 
-using namespace std;
-
-
 int main()
 {
-
     driver drive;
 
-	return 0;
+    return 0;
 }
