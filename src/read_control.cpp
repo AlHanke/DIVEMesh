@@ -80,6 +80,12 @@ void lexer::read_control()
                 /*case 10: ++B10;
                          clear(c,numint);
                          break;*/
+                case 11: ++B11;
+                         clear(c,numint);
+                         break;
+                case 12: ++B12;
+                         clear(c,numint);
+                         break;
                 case 101: control>>B101;
                          clear(c,numint);
                          break;
@@ -858,6 +864,19 @@ void lexer::read_control()
     }
     control.close();
     control.clear();
+    Darray(B11_xs,B11);
+    Darray(B11_xe,B11);
+    Darray(B11_ys,B11);
+    Darray(B11_ye,B11);
+    Darray(B11_zs,B11);
+    Darray(B11_ze,B11);
+
+    Darray(B12_xs,B12);
+    Darray(B12_xe,B12);
+    Darray(B12_ys,B12);
+    Darray(B12_ye,B12);
+    Darray(B12_zs,B12);
+    Darray(B12_ze,B12);
 
     Iarray(M31,M30_x);
     Iarray(M32,M30_y);
@@ -1226,7 +1245,8 @@ void lexer::read_control()
     Darray(T340_N,T340);
     Darray(T340_ds,T340);
 
-
+    int countB11=0;
+    int countB12=0;
     int countS10=0;
     int countS11=0;
     int countS12=0;
@@ -1299,6 +1319,19 @@ void lexer::read_control()
         control>>c;
         switch(c)
         {
+            case 'B': control>>numint;
+                switch(numint)
+                {
+                case 11: control>>B11_xs[countB11]>>B11_xe[countB11]>>B11_ys[countB11]>>B11_ye[countB11]>>B11_zs[countB11]>>B11_ze[countB11]>>B11_dx[countB11];
+                         ++countB11;
+                         clear(c,numint);
+                         break;
+                case 12: control>>B12_xs[countB12]>>B12_xe[countB12]>>B12_ys[countB12]>>B12_ye[countB12]>>B12_zs[countB12]>>B12_ze[countB12]>>B12_dx[countB12]>>B12_dy[countB12]>>B12_dz[countB12];
+                         ++countB12;
+                         clear(c,numint);
+                         break;
+                }
+                break;
             case 'M': control>>numint;
                 switch(numint)
                 {

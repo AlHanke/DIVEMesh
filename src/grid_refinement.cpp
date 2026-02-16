@@ -17,31 +17,32 @@ for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------
-Author: Hans Bihs
+Author: Alexander Hanke
 --------------------------------------------------------------------*/
 
-#ifndef DRIVER_DECLARATIONS_H_
-#define DRIVER_DECLARATIONS_H_
+#include "grid_refinement.h"
+#include "driver_headers.h"
 
-class lexer;
-class dive;
-class printer;
-class surface;
-class decomp;
-class initialize;
-class bc;
-class freecoor;
-class objects;
-class box;
-class geodat;
-class dataset;
-class objects_geometry;
-class print_objects;
-class solid;
-class topo;
-class slice;
-class bedlevel;
-class hdc;
-class grid_refinement;
+grid_refinement::grid_refinement(lexer* p, dive* a)
+{
+    cout<<"grid refinement ini";
 
-#endif
+    cout<<"."<<endl;
+}
+
+void grid_refinement::start(lexer* p, dive* a)
+{
+    cout<<"grid refinement "<<endl;
+
+    if(p->B11>0)
+    {
+        cout<<"B11: "<<p->B11<<endl;
+    }
+
+    if(p->B12>0)
+    {
+        cout<<"B12: "<<p->B12<<endl;
+    }
+
+    cout<<"."<<endl;
+}

@@ -101,7 +101,11 @@ public:
     double B3_dx,B3_dy;
     int B5,B6,B10;
     double *B10_xs,*B10_xe,*B10_ys,*B10_ye,*B10_zs,*B10_ze;
-    
+    int B11; // number of blocks with user-defined spacing
+    double *B11_xs,*B11_xe,*B11_ys,*B11_ye,*B11_zs,*B11_ze,*B11_dx;
+    int B12; // number of blocks with user-defined spacing in x,y,z
+    double *B12_xs,*B12_xe,*B12_ys,*B12_ye,*B12_zs,*B12_ze,*B12_dx,*B12_dy,*B12_dz;
+
     int B101,B102,B103;
     double B111,B112,B113;
     int B114,B115,B116;

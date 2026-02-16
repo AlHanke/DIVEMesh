@@ -70,6 +70,11 @@ void driver::logic(lexer* p)
         p->topoprint = 1;
     }
 
+    if(p->B11>0 || p->B12>0)
+    {
+        pgrid_refinement = new grid_refinement(p,a);
+    }
+
     cout<<"."<<endl;
 
     mainloop();

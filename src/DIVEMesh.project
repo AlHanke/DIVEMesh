@@ -23,6 +23,9 @@
     <VirtualDirectory Name="Topo">
       <File Name="topo.h"/>
     </VirtualDirectory>
+    <VirtualDirectory Name="Grid Refinement">
+      <File Name="grid_refinement.h"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="Geometry">
       <File Name="geometry.h"/>
     </VirtualDirectory>
@@ -107,6 +110,9 @@
     <VirtualDirectory Name="Topo">
       <File Name="topo_gcbest.cpp"/>
       <File Name="topo.cpp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Grid Refinement">
+      <File Name="grid_refinement.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Geometry">
       <File Name="geometry_beam.cpp"/>

@@ -133,6 +133,9 @@ void driver::mainloop()
     if(p->H10>0)
     phdc->start(p,a);
 
+    if(p->B11>0 || p->B12>0)
+    pgrid_refinement->start(p,a);
+
     pvtu->start(p,a);
     pprint->start(p,a);
 
