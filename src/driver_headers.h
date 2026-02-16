@@ -45,6 +45,7 @@ Author: Hans Bihs
 #include"print_stl_geodat.h"
 
 #include"hdc.h"
+#include"grid_refinement.h"
 
 #include<iostream>
 

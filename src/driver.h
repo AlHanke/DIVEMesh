@@ -59,6 +59,7 @@ public:
     slice *pslice;
     bedlevel *pbed;
     hdc *phdc;
+    grid_refinement *pgrid_refinement;
 
     double **input;
     double *header;

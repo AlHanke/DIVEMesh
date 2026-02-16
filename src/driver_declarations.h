@@ -43,5 +43,6 @@ class topo;
 class slice;
 class bedlevel;
 class hdc;
+class grid_refinement;
 
 #endif
