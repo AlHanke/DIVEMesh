@@ -64,7 +64,7 @@ void print_grid::start(lexer* p,dive* a)
         const int count = ((aa-1)*a->my + (bb-1))*a->mz + cc;
 
         std::vector<char> buffer;
-        size_t size = 16*sizeof(double)+74*sizeof(int)
+        size_t size = 19*sizeof(double)+67*sizeof(int)
                     +((a->xnode[aa]-a->xnode[aa-1])*(a->ynode[bb]-a->ynode[bb-1])*(a->znode[cc]-a->znode[cc-1]))*sizeof(int)
                     +(a->xnode[aa]+marge-(a->xnode[aa-1]-marge))*sizeof(double)*2
                     +(a->ynode[bb]+marge-(a->ynode[bb-1]-marge))*sizeof(double)*2
@@ -77,21 +77,21 @@ void print_grid::start(lexer* p,dive* a)
                     +a->para4count*3*sizeof(int)
                     +a->para5count*3*sizeof(int)
                     +a->para6count*3*sizeof(int)
-                    +a->paraco1count*6*sizeof(int)
-                    +a->paraco2count*6*sizeof(int)
-                    +a->paraco3count*6*sizeof(int)
-                    +a->paraco4count*6*sizeof(int)
-                    +a->paraco5count*6*sizeof(int)
-                    +a->paraco6count*6*sizeof(int)
+                    +a->paraco1count*3*sizeof(int)
+                    +a->paraco2count*3*sizeof(int)
+                    +a->paraco3count*3*sizeof(int)
+                    +a->paraco4count*3*sizeof(int)
+                    +a->paraco5count*3*sizeof(int)
+                    +a->paraco6count*3*sizeof(int)
                     +a->knox*a->knoy*sizeof(int)
                     +a->paraslice1count*2*sizeof(int)
                     +a->paraslice2count*2*sizeof(int)
                     +a->paraslice3count*2*sizeof(int)
                     +a->paraslice4count*2*sizeof(int)
-                    +a->paracoslice1count*3*sizeof(int)
-                    +a->paracoslice2count*3*sizeof(int)
-                    +a->paracoslice3count*3*sizeof(int)
-                    +a->paracoslice4count*3*sizeof(int)
+                    +a->paracoslice1count*2*sizeof(int)
+                    +a->paracoslice2count*2*sizeof(int)
+                    +a->paracoslice3count*2*sizeof(int)
+                    +a->paracoslice4count*2*sizeof(int)
                     +a->knox*a->knoy*4*sizeof(double);
         buffer.resize(size);
         size_t m=0;
@@ -280,16 +280,6 @@ void print_grid::start(lexer* p,dive* a)
         std::memcpy(&buffer[m],&iin,sizeof(int));
         m+=sizeof(int);
 
-        iin = 0; // dead
-        std::memcpy(&buffer[m],&iin,sizeof(int));
-        m+=sizeof(int);
-        iin = 0; // dead
-        std::memcpy(&buffer[m],&iin,sizeof(int));
-        m+=sizeof(int);
-        iin = 0; // dead
-        std::memcpy(&buffer[m],&iin,sizeof(int));
-        m+=sizeof(int);
-
         iin = p->C11;
         std::memcpy(&buffer[m],&iin,sizeof(int));
         m+=sizeof(int);
@@ -375,19 +365,7 @@ void print_grid::start(lexer* p,dive* a)
         std::memcpy(&buffer[m],&iin,sizeof(int));
         m+=sizeof(int);
 
-        iin = 0; // dead
-        std::memcpy(&buffer[m],&iin,sizeof(int));
-        m+=sizeof(int);
         iin = p->B6; // CMS on/off
-        std::memcpy(&buffer[m],&iin,sizeof(int));
-        m+=sizeof(int);
-        iin = 0; // dead
-        std::memcpy(&buffer[m],&iin,sizeof(int));
-        m+=sizeof(int);
-        iin = 0; // dead
-        std::memcpy(&buffer[m],&iin,sizeof(int));
-        m+=sizeof(int);
-        iin = 0; // dead
         std::memcpy(&buffer[m],&iin,sizeof(int));
         m+=sizeof(int);
 
@@ -398,16 +376,6 @@ void print_grid::start(lexer* p,dive* a)
         std::memcpy(&buffer[m],&ddn,sizeof(double));
         m+=sizeof(double);
         ddn = p->alpha_grid;
-        std::memcpy(&buffer[m],&ddn,sizeof(double));
-        m+=sizeof(double);
-
-        ddn = 0.0; // dead
-        std::memcpy(&buffer[m],&ddn,sizeof(double));
-        m+=sizeof(double);
-        ddn = 0.0; // dead
-        std::memcpy(&buffer[m],&ddn,sizeof(double));
-        m+=sizeof(double);
-        ddn = 0.0; // dead
         std::memcpy(&buffer[m],&ddn,sizeof(double));
         m+=sizeof(double);
 
@@ -659,18 +627,6 @@ void print_grid::start(lexer* p,dive* a)
                 iin = k-a->znode[cc-1];
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
             }
         }
 
@@ -692,18 +648,6 @@ void print_grid::start(lexer* p,dive* a)
                 m+=sizeof(int);
 
                 iin = k-a->znode[cc-1];
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
             }
@@ -729,18 +673,6 @@ void print_grid::start(lexer* p,dive* a)
                 iin = k-a->znode[cc-1];
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
             }
         }
 
@@ -762,18 +694,6 @@ void print_grid::start(lexer* p,dive* a)
                 m+=sizeof(int);
 
                 iin = k-a->znode[cc-1];
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
             }
@@ -799,18 +719,6 @@ void print_grid::start(lexer* p,dive* a)
                 iin = k-a->znode[cc-1];
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
             }
         }
 
@@ -832,18 +740,6 @@ void print_grid::start(lexer* p,dive* a)
                 m+=sizeof(int);
 
                 iin = k-a->znode[cc-1];
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-
-                iin = 0; // dead
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
             }
@@ -949,9 +845,6 @@ void print_grid::start(lexer* p,dive* a)
                 iin = j-a->ynode[bb-1];
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
             }
         }
 
@@ -967,9 +860,6 @@ void print_grid::start(lexer* p,dive* a)
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
                 iin = j-a->ynode[bb-1];
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-                iin = 0; // dead
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
             }
@@ -989,9 +879,6 @@ void print_grid::start(lexer* p,dive* a)
                 iin = j-a->ynode[bb-1];
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
-                iin = 0; // dead
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
             }
         }
 
@@ -1007,9 +894,6 @@ void print_grid::start(lexer* p,dive* a)
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
                 iin = j-a->ynode[bb-1];
-                std::memcpy(&buffer[m],&iin,sizeof(int));
-                m+=sizeof(int);
-                iin = 0; // dead
                 std::memcpy(&buffer[m],&iin,sizeof(int));
                 m+=sizeof(int);
             }
