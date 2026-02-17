@@ -163,50 +163,6 @@ void decomp::neighbors(lexer* p,dive* a)
         a->nbpara5[count]=a->sgfield[aa][bb][cc-1]-1;
         a->nbpara6[count]=a->sgfield[aa][bb][cc+1]-1;
     }
-
-    // MPI_GRAPH
-    count=0;
-    for(n=1;n<p->M10+1;++n)
-    {
-        if(a->nbpara1[n]>-1)
-        {
-            a->mpi_edges[count]=a->nbpara1[n];
-            ++count;
-        }
-
-        if(a->nbpara2[n]>-1)
-        {
-            a->mpi_edges[count]=a->nbpara2[n];
-            ++count;
-        }
-
-        if(a->nbpara3[n]>-1)
-        {
-            a->mpi_edges[count]=a->nbpara3[n];
-            ++count;
-        }
-
-        if(a->nbpara4[n]>-1)
-        {
-            a->mpi_edges[count]=a->nbpara4[n];
-            ++count;
-        }
-
-        if(a->nbpara5[n]>-1)
-        {
-            a->mpi_edges[count]=a->nbpara5[n];
-            ++count;
-        }
-
-        if(a->nbpara6[n]>-1)
-        {
-            a->mpi_edges[count]=a->nbpara6[n];
-            ++count;
-        }
-
-        a->mpi_index[n]=count;
-    }
-    a->mpi_edgenum=count;
 }
 
 void decomp::knoxcalc(lexer* p, dive*a)

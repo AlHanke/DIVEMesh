@@ -19,37 +19,31 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------
 Author: Hans Bihs
 --------------------------------------------------------------------*/
-#include "dive.h"
 
-dive::dive(lexer* p) : flag(p),solid(p),solid_dist(p),
-                   topo(p),topo_dist(p),porous(p),
-                   subgrid(p),
-                   topobed(p),solidbed(p),dataset(p),
-                   bedlevel(p),zstl_min(p),zstl_max(p),
+#include "dive.h"
+
+dive::dive(lexer* p) : flag(p),solid(p),topo(p),porous(p),
+                   solid_dist(p),topo_dist(p),subgrid(p),
+                   topobed(p),solidbed(p),bedlevel(p),
+                   zstl_min(p),zstl_max(p),dataset(p),
                    flagslice(p),subslice(p)
 {
 
-	p->Darray(xorig,p->M10+10);
-	p->Darray(yorig,p->M10+10);
-	p->Darray(zorig,p->M10+10);
-	
-	p->Iarray(xnode,p->M10+10);
-	p->Iarray(ynode,p->M10+10);
-	p->Iarray(znode,p->M10+10);
+    p->Darray(xorig,p->M10+10);
+    p->Darray(yorig,p->M10+10);
+    p->Darray(zorig,p->M10+10);
 
+    p->Iarray(xnode,p->M10+10);
+    p->Iarray(ynode,p->M10+10);
+    p->Iarray(znode,p->M10+10);
 
-     knox=p->knox;
-     knoy=p->knoy;
-     knoz=p->knoz;
+    knox=p->knox;
+    knoy=p->knoy;
+    knoz=p->knoz;
 
-     maxknox=0;
-     maxknox=MAX(maxknox,p->knox);
-     maxknox=MAX(maxknox,p->knoy);
-     maxknox=MAX(maxknox,p->knoz);
-	
-	p->Iarray(subknox,p->M10+1);
-	p->Iarray(subknoy,p->M10+1);
-	p->Iarray(subknoz,p->M10+1);
+    p->Iarray(subknox,p->M10+1);
+    p->Iarray(subknoy,p->M10+1);
+    p->Iarray(subknoz,p->M10+1);
 
     incount=0;
     utcount=0;
@@ -65,46 +59,41 @@ dive::dive(lexer* p) : flag(p),solid(p),solid_dist(p),
     para5count=0;
     para6count=0;
 
-	Iarray(mpi_index,p->M10+1);
-	Iarray(mpi_edges,(p->M10+1)*6);
+    Iarray(in,p->M10+1);
+    Iarray(ut,p->M10+1);
+    Iarray(fsf,p->M10+1);
+    Iarray(wall,p->M10+1);
+    Iarray(bed,p->M10+1);
 
+    Iarray(para1,p->M10+1);
+    Iarray(para2,p->M10+1);
+    Iarray(para3,p->M10+1);
+    Iarray(para4,p->M10+1);
+    Iarray(para5,p->M10+1);
+    Iarray(para6,p->M10+1);
+    Iarray(paraco1,p->M10+1);
+    Iarray(paraco2,p->M10+1);
+    Iarray(paraco3,p->M10+1);
+    Iarray(paraco4,p->M10+1);
+    Iarray(paraco5,p->M10+1);
+    Iarray(paraco6,p->M10+1);
 
-	Iarray(in,p->M10+1);
-	Iarray(ut,p->M10+1);
-	Iarray(fsf,p->M10+1);
-	Iarray(wall,p->M10+1);
-	Iarray(bed,p->M10+1);
-
-	Iarray(para1,p->M10+1);
-	Iarray(para2,p->M10+1);
-	Iarray(para3,p->M10+1);
-	Iarray(para4,p->M10+1);
-	Iarray(para5,p->M10+1);
-	Iarray(para6,p->M10+1);
-	Iarray(paraco1,p->M10+1);
-	Iarray(paraco2,p->M10+1);
-	Iarray(paraco3,p->M10+1);
-	Iarray(paraco4,p->M10+1);
-	Iarray(paraco5,p->M10+1);
-	Iarray(paraco6,p->M10+1);
-    
     Iarray(paraslice1,p->M10+1);
-	Iarray(paraslice2,p->M10+1);
-	Iarray(paraslice3,p->M10+1);
-	Iarray(paraslice4,p->M10+1);
-    
-    Iarray(paracoslice1,p->M10+1);
-	Iarray(paracoslice2,p->M10+1);
-	Iarray(paracoslice3,p->M10+1);
-	Iarray(paracoslice4,p->M10+1);
-    
-	Iarray(nbpara1,p->M10+1);
-	Iarray(nbpara2,p->M10+1);
-	Iarray(nbpara3,p->M10+1);
-	Iarray(nbpara4,p->M10+1);
-	Iarray(nbpara5,p->M10+1);
-	Iarray(nbpara6,p->M10+1);
+    Iarray(paraslice2,p->M10+1);
+    Iarray(paraslice3,p->M10+1);
+    Iarray(paraslice4,p->M10+1);
 
+    Iarray(paracoslice1,p->M10+1);
+    Iarray(paracoslice2,p->M10+1);
+    Iarray(paracoslice3,p->M10+1);
+    Iarray(paracoslice4,p->M10+1);
+
+    Iarray(nbpara1,p->M10+1);
+    Iarray(nbpara2,p->M10+1);
+    Iarray(nbpara3,p->M10+1);
+    Iarray(nbpara4,p->M10+1);
+    Iarray(nbpara5,p->M10+1);
+    Iarray(nbpara6,p->M10+1);
 
     for(n=0;n<p->M10+1;n++)
     {
@@ -136,48 +125,77 @@ dive::dive(lexer* p) : flag(p),solid(p),solid_dist(p),
         nbpara6[n]=-1;
     }
 
-//ibm
-    maxsurf =int((knox*knoy + knox*knoz + knoy*knoz)); 
-	 
-	
-	i_dir=j_dir=k_dir=0;
-	
-	if(p->knox>1 || p->B5!=1)
-	i_dir=1;
-	
-	if(p->knoy>1 || p->B5!=1)
-	j_dir=1;
-	
-	if(p->knoz>1 || p->B5!=1)
-	k_dir=1;
-//object print
+    i_dir=j_dir=k_dir=0;
 
-	
-	int polyval=1e6;
-	
-	Iarray(polygon,polyval,5);
-	Iarray(numvert,5*polyval);
-	Iarray(polygon_offset,5*polyval);
-	Darray(vertice,5*polyval,3);
-	
-	
-	Iarray(solid_gcb,p->M10+2);    
+    if(p->knox>1 || p->B5!=1)
+    i_dir=1;
+
+    if(p->knoy>1 || p->B5!=1)
+    j_dir=1;
+
+    if(p->knoz>1 || p->B5!=1)
+    k_dir=1;
+
+    //object print
+    Iarray(solid_gcb,p->M10+2);
     Iarray(topo_gcb,p->M10+2);
-    
+
     Iarray(solid_gcbextra,p->M10+2);
     Iarray(topo_gcbextra,p->M10+2);
     Iarray(tot_gcbextra,p->M10+2);
 
-
-cout<<'.'<<endl;
-
-
+    cout<<'.'<<endl;
 }
 
 dive::~dive()
 {
+    delete [] xorig;
+    delete [] yorig;
+    delete [] zorig;
 
+    delete [] xnode;
+    delete [] ynode;
+    delete [] znode;
+
+    delete [] in;
+    delete [] ut;
+    delete [] fsf;
+    delete [] wall;
+    delete [] bed;
+
+    delete [] para1;
+    delete [] para2;
+    delete [] para3;
+    delete [] para4;
+    delete [] para5;
+    delete [] para6;
+    delete [] paraco1;
+    delete [] paraco2;
+    delete [] paraco3;
+    delete [] paraco4;
+    delete [] paraco5;
+    delete [] paraco6;
+
+    delete [] paraslice1;
+    delete [] paraslice2;
+    delete [] paraslice3;
+    delete [] paraslice4;
+    delete [] paracoslice1;
+    delete [] paracoslice2;
+    delete [] paracoslice3;
+    delete [] paracoslice4;
+
+    delete [] nbpara1;
+    delete [] nbpara2;
+    delete [] nbpara3;
+    delete [] nbpara4;
+    delete [] nbpara5;
+    delete [] nbpara6;
+
+    delete [] solid_gcb;
+    delete [] topo_gcb;
+
+    delete [] solid_gcbextra;
+    delete [] topo_gcbextra;
+    delete [] tot_gcbextra;
 }
-
-
-
