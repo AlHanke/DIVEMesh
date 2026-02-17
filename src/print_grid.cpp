@@ -62,9 +62,13 @@ void print_grid::start(lexer* p,dive* a)
         int iin = 0;
         double ddn = 0.0;
         const int count = ((aa-1)*a->my + (bb-1))*a->mz + cc;
+        size_t grid_refinement_data_size = sizeof(int) + a->grid_refinement_data.size() * sizeof(int);
+        for (const auto& block : a->grid_refinement_data) {
+            grid_refinement_data_size += block.size() * 2 * sizeof(double[3]);
+        }
 
         std::vector<char> buffer;
-        size_t size = 19*sizeof(double)+67*sizeof(int)
+        size_t size = 19*sizeof(double)+68*sizeof(int)
                     +((a->xnode[aa]-a->xnode[aa-1])*(a->ynode[bb]-a->ynode[bb-1])*(a->znode[cc]-a->znode[cc-1]))*sizeof(int)
                     +(a->xnode[aa]+marge-(a->xnode[aa-1]-marge))*sizeof(double)*2
                     +(a->ynode[bb]+marge-(a->ynode[bb-1]-marge))*sizeof(double)*2
@@ -92,7 +96,8 @@ void print_grid::start(lexer* p,dive* a)
                     +a->paracoslice2count*2*sizeof(int)
                     +a->paracoslice3count*2*sizeof(int)
                     +a->paracoslice4count*2*sizeof(int)
-                    +a->knox*a->knoy*4*sizeof(double);
+                    +a->knox*a->knoy*4*sizeof(double)
+                    +grid_refinement_data_size;
         buffer.resize(size);
         size_t m=0;
 
@@ -378,6 +383,10 @@ void print_grid::start(lexer* p,dive* a)
         ddn = p->alpha_grid;
         std::memcpy(&buffer[m],&ddn,sizeof(double));
         m+=sizeof(double);
+
+        iin = a->maxlevels;
+        std::memcpy(&buffer[m],&iin,sizeof(int));
+        m+=sizeof(int);
 
         // ---------------------------------------------------------------------------------------------------------------------
         // FLAG
@@ -940,6 +949,39 @@ void print_grid::start(lexer* p,dive* a)
             ddn = a->dataset(i,j);
             std::memcpy(&buffer[m],&ddn,sizeof(double));
             m+=sizeof(double);
+        }
+
+        // Grid refinement level
+        if(a->maxlevels>1)
+        {
+            for(auto blocks : a->grid_refinement_data)
+            {
+                iin = blocks.size();
+                std::memcpy(&buffer[m],&iin,sizeof(int));
+                m+=sizeof(int);
+                for(auto block : blocks)
+                {
+                    ddn = block.first[0];
+                    std::memcpy(&buffer[m],&ddn,sizeof(double));
+                    m+=sizeof(double);
+                    ddn = block.first[1];
+                    std::memcpy(&buffer[m],&ddn,sizeof(double));
+                    m+=sizeof(double);
+                    ddn = block.first[2];
+                    std::memcpy(&buffer[m],&ddn,sizeof(double));
+                    m+=sizeof(double);
+
+                    ddn = block.second[0];
+                    std::memcpy(&buffer[m],&ddn,sizeof(double));
+                    m+=sizeof(double);
+                    ddn = block.second[1];
+                    std::memcpy(&buffer[m],&ddn,sizeof(double));
+                    m+=sizeof(double);
+                    ddn = block.second[2];
+                    std::memcpy(&buffer[m],&ddn,sizeof(double));
+                    m+=sizeof(double);
+                }
+            }
         }
 
         buffer.resize(m);

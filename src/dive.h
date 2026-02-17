@@ -30,6 +30,7 @@ Author: Hans Bihs
 #include"increment.h"
 #include"field2d.h"
 #include"intfield2d.h"
+#include<vector>
 
 using namespace std;
 
@@ -88,6 +89,9 @@ public:
 
     //polygon objects
     int vertice_num;
+    // grid refinement
+    int maxlevels = 1; // maximum number of grid refinement levels, including the base level (level 1 is the base grid, level 2 is the first refinement level, etc.)
+    std::vector<std::vector<std::pair<double[3], double[3]>>> grid_refinement_data; // index is offset by 1, blocks[0] is for level 1, blocks[1] for level 2, etc. Each block is a pair of two 3D points (min and max corners of the block)
 };
 
 
