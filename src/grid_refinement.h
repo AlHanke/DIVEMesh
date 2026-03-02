@@ -17,7 +17,7 @@ for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------
-Author: Alexander Hanke
+Author: Alexander Hanke (@AlHanke)
 --------------------------------------------------------------------*/
 
 #ifndef GRIDREFINEMENT_H_
@@ -30,6 +30,12 @@ class grid_refinement
 public:
     grid_refinement(lexer* p, dive* a);
     void start(lexer* p, dive* a);
+private:
+    void B11_refinement(lexer* p, dive* a);
+    void B12_refinement(lexer* p, dive* a){};
+    void fill_intermediate_levels(lexer* p, dive* a);
+    void print_levels(lexer* p, dive* a);
+    const int refinement_ratio = 2; // how many times finer the refined grid is compared to the base grid (e.g., 2 means that the refined grid has half the cell size of the base grid)
 };
 
 #endif

@@ -384,7 +384,7 @@ void print_grid::start(lexer* p,dive* a)
         std::memcpy(&buffer[m],&ddn,sizeof(double));
         m+=sizeof(double);
 
-        iin = a->maxlevels;
+        iin = a->nlevels;
         std::memcpy(&buffer[m],&iin,sizeof(int));
         m+=sizeof(int);
 
@@ -952,7 +952,7 @@ void print_grid::start(lexer* p,dive* a)
         }
 
         // Grid refinement level
-        if(a->maxlevels>1)
+        if(a->nlevels>1)
         {
             for(auto blocks : a->grid_refinement_data)
             {

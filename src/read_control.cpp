@@ -870,6 +870,7 @@ void lexer::read_control()
     Darray(B11_ye,B11);
     Darray(B11_zs,B11);
     Darray(B11_ze,B11);
+    Darray(B11_dx,B11);
 
     Darray(B12_xs,B12);
     Darray(B12_xe,B12);
@@ -877,6 +878,9 @@ void lexer::read_control()
     Darray(B12_ye,B12);
     Darray(B12_zs,B12);
     Darray(B12_ze,B12);
+    Darray(B12_dx,B12);
+    Darray(B12_dy,B12);
+    Darray(B12_dz,B12);
 
     Iarray(M31,M30_x);
     Iarray(M32,M30_y);
