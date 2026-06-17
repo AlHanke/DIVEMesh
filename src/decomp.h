@@ -23,37 +23,35 @@ Author: Hans Bihs
 #ifndef DECOMPOSITION_H_
 #define DECOMPOSITION_H_
 
-#include<iostream>
-#include<fstream>
-#include"lexer.h"
-#include"increment.h"
-#include"dive.h"
+#include "dive.h"
+#include "lexer.h"
+#include "increment.h"
+#include <iostream>
+#include <fstream>
 
 using namespace std;
-
 
 class decomp : public increment
 {
 public:
     decomp();
-    virtual ~decomp();
-    virtual void start(lexer*,dive*);
-    
-    void surfcount(lexer*,dive*);
+    virtual ~decomp() = default;
+    void start(lexer*,dive*);
 
 private:
+    void surfcount(lexer*,dive*);
     void nodecalc(lexer*,dive*);
     void costfunc(lexer*,dive*);
-	void partition_analyse(lexer*,dive*);
+    void partition_analyse(lexer*,dive*);
     void partition(lexer*,dive*);
-    void partition_correction(lexer*, dive*);
-	void partition_correct_x(lexer*, dive*);
-	void partition_correct_y(lexer*, dive*);
-	void partition_correct_z(lexer*, dive*);
-	void partition_voidcheck(lexer*, dive*);
+    void partition_correction(lexer*,dive*);
+    void partition_correct_x(lexer*,dive*);
+    void partition_correct_y(lexer*,dive*);
+    void partition_correct_z(lexer*,dive*);
+    void partition_voidcheck(lexer*,dive*);
     void partition_manual(lexer*,dive*);
     void partition_planes(lexer*,dive*);
-    void print_partition(lexer*, dive*);
+    void print_partition(lexer*,dive*);
     void rank(lexer*,dive*,int&,int&,int&,int&,int&,int&);
 
     void parasurface(lexer*,dive*);
@@ -66,15 +64,15 @@ private:
     void slicesurfcount(lexer*,dive*);
     void slicecornercount(lexer*,dive*);
     void knoxcalc(lexer*,dive*);
-	void mem_alloc(lexer*,dive*);
+    void mem_alloc(lexer*,dive*);
     int partition_check(lexer*,dive*);
-    
+
     void periodic_ini(lexer*,dive*);
     void periodic_surf(lexer*,dive*);
     void periodic_surfco(lexer*,dive*);
     void periodic_nb(lexer*,dive*);
     void periodic_count(lexer*,dive*);
-    
+
     void decomp_vtp(lexer*,dive*);
 
     int numfactor;
@@ -89,30 +87,22 @@ private:
 
     int jmin,jmax,**kmin,**kmax;
     int bcount;
-	
-	double xvar,yvar,zvar;
-	double xvar_per,yvar_per,zvar_per;
-	double xdiff,ydiff,zdiff;
-	double xcross_m, ycross_m, zcross_m;
-	int maindir;
-	int *subcell;
-	int *xcross,*ycross,*zcross;
-	int *xcount,*ycount,*zcount;
-	int xaverage,yaverage,zaverage;
-	int xcount_sum,ycount_sum,zcount_sum,cellnum,paverage;
-  
-    
-    char name[100],pname[100],epsvar[100];
-    int n,iin,offset[100];
-    float ffn;
-    
+
+    double xvar,yvar,zvar;
+    double xvar_per,yvar_per,zvar_per;
+    double xdiff,ydiff,zdiff;
+    double xcross_m, ycross_m, zcross_m;
+    int maindir;
+    int *subcell;
+    int *xcross,*ycross,*zcross;
+    int *xcount,*ycount,*zcount;
+    int xaverage,yaverage,zaverage;
+    int xcount_sum,ycount_sum,zcount_sum,cellnum,paverage;
+
     double **trix,**triy,**triz;
     int tricount;
-	
-	ofstream ddout;
 
-
+    ofstream ddout;
 };
 
 #endif
-

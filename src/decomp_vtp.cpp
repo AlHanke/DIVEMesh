@@ -20,25 +20,28 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 Author: Hans Bihs
 --------------------------------------------------------------------*/
 
-#include"decomp.h"
-#include<sys/stat.h>
+#include "decomp.h"
+#include <sys/stat.h>
 
 void decomp::decomp_vtp(lexer* p, dive* a)
 {
     double ddn;
-    
-    mkdir("./DIVEMesh_Paraview",0777);
-	sprintf(name,"./DIVEMesh_Paraview/DIVEMesh_Partition.vtp");
+    char name[100];
+    int n,iin,offset[100];
+    float ffn;
 
-	ofstream result;
-	result.open(name, ios::binary);
-	
-	cout<<"print_partition_vtp"<<endl;
+    mkdir("./DIVEMesh_Paraview",0777);
+    sprintf(name,"./DIVEMesh_Paraview/DIVEMesh_Partition.vtp");
+
+    ofstream result;
+    result.open(name, ios::binary);
+
+    cout<<"print_partition_vtp\n";
 
     n=0;
 
-	offset[n]=0;
-	++n;
+    offset[n]=0;
+    ++n;
 
     offset[n]=offset[n-1]+8*tricount*3*3 + 4;
     ++n;
@@ -46,84 +49,85 @@ void decomp::decomp_vtp(lexer* p, dive* a)
     ++n;
     offset[n]=offset[n-1]+4*tricount*3 + 4;
     ++n;
-	//---------------------------------------------
+    //---------------------------------------------
 
-	result<<"<?xml version=\"1.0\"?>"<<endl;
-	result<<"<VTKFile type=\"PolyData\" version=\"0.1\" byte_order=\"LittleEndian\">"<<endl;
-	result<<"<PolyData>"<<endl;
-	result<<"<Piece NumberOfPoints=\""<<tricount*3<<"\" NumberOfPolys=\""<<tricount<<"\">"<<endl;
+    result<<"<?xml version=\"1.0\"?>\n";
+    result<<"<VTKFile type=\"PolyData\" version=\"0.1\" byte_order=\"LittleEndian\">\n";
+    result<<"<PolyData>\n";
+    result<<"<Piece NumberOfPoints=\""<<tricount*3<<"\" NumberOfPolys=\""<<tricount<<"\">\n";
 
     n=0;
-    result<<"<Points>"<<endl;
-    result<<"<DataArray type=\"Float64\"  NumberOfComponents=\"3\"  format=\"appended\" offset=\""<<offset[n]<<"\" />"<<endl;
+    result<<"<Points>\n";
+    result<<"<DataArray type=\"Float64\" NumberOfComponents=\"3\" format=\"appended\" offset=\""<<offset[n]<<"\"/>\n";
     ++n;
-    result<<"</Points>"<<endl;
+    result<<"</Points>\n";
 
-    result<<"<Polys>"<<endl;
-    result<<"<DataArray type=\"Int32\"  Name=\"connectivity\"  format=\"appended\" offset=\""<<offset[n]<<"\" />"<<endl;
+    result<<"<Polys>\n";
+    result<<"<DataArray type=\"Int32\" Name=\"connectivity\" format=\"appended\" offset=\""<<offset[n]<<"\"/>\n";
     ++n;
-	result<<"<DataArray type=\"Int32\"  Name=\"offsets\"  format=\"appended\" offset=\""<<offset[n]<<"\" />"<<endl;
-	++n;
-    result<<"<DataArray type=\"Int32\"  Name=\"types\"  format=\"appended\" offset=\""<<offset[n]<<"\" />"<<endl;
+    result<<"<DataArray type=\"Int32\" Name=\"offsets\" format=\"appended\" offset=\""<<offset[n]<<"\"/>\n";
+    ++n;
+    result<<"<DataArray type=\"Int32\" Name=\"types\" format=\"appended\" offset=\""<<offset[n]<<"\"/>\n";
 
-	result<<"</Polys>"<<endl;
+    result<<"</Polys>\n";
 
-    result<<"</Piece>"<<endl;
-    result<<"</PolyData>"<<endl;
+    result<<"</Piece>\n";
+    result<<"</PolyData>\n";
 
-//----------------------------------------------------------------------------
-    result<<"<AppendedData encoding=\"raw\">"<<endl<<"_";
+    result<<"<AppendedData encoding=\"raw\">\n_";
+
+    //----------------------------------------------------------------------------
 
 
-//  XYZ
-	iin=8*tricount*3*3;
-	result.write((char*)&iin, sizeof(int));
+    //  XYZ
+    iin=8*tricount*3*3;
+    result.write((char*)&iin, sizeof(int));
     for(n=0;n<tricount;++n)
-	for(q=0;q<3;++q)
-	{
-    ddn=trix[n][q];
-	result.write((char*)&ddn, sizeof(double));
+    for(q=0;q<3;++q)
+    {
+        ddn=trix[n][q];
+        result.write((char*)&ddn, sizeof(double));
 
-    ddn=triy[n][q];
-	result.write((char*)&ddn, sizeof(double));
+        ddn=triy[n][q];
+        result.write((char*)&ddn, sizeof(double));
 
-    ddn=triz[n][q];
-	result.write((char*)&ddn, sizeof(double));
-	}
+        ddn=triz[n][q];
+        result.write((char*)&ddn, sizeof(double));
+    }
 
-//  Connectivity POLYGON
-	int count=0;
+    //  Connectivity POLYGON
+    int count=0;
     iin=4*tricount*3;
     result.write((char*)&iin, sizeof(int));
     for(n=0;n<tricount;++n)
-	for(q=0;q<3;++q)
-	{
-	iin=count;
-	result.write((char*)&iin, sizeof(int));
-	++count;
-	}
+    for(q=0;q<3;++q)
+    {
+        iin=count;
+        result.write((char*)&iin, sizeof(int));
+        ++count;
+    }
 
-//  Offset of Connectivity
+    //  Offset of Connectivity
     iin=4*tricount;
     result.write((char*)&iin, sizeof(int));
-	iin=0;
-	for(n=0;n<tricount;++n)
-	{
-	iin+= 3;//a->polygon_offset[n];
-	result.write((char*)&iin, sizeof(int));
-	}
+    iin=0;
+    for(n=0;n<tricount;++n)
+    {
+        iin+=3;
+        result.write((char*)&iin, sizeof(int));
+    }
 
-//  Cell types
+    //  Cell types
     iin=4*tricount;
     result.write((char*)&iin, sizeof(int));
-	for(n=0;n<tricount;++n)
-	{
-	iin=7;
-	result.write((char*)&iin, sizeof(int));
-	}
+    for(n=0;n<tricount;++n)
+    {
+        iin=7;
+        result.write((char*)&iin, sizeof(int));
+    }
 
-	result<<endl<<"</AppendedData>"<<endl;
+    result<<"\n</AppendedData>\n";
     result<<"</VTKFile>"<<endl;
 
-	result.close();	
+    result.close();
 }
