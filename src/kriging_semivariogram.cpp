@@ -20,17 +20,16 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 Author: Hans Bihs
 --------------------------------------------------------------------*/
 
-#include"kriging.h"
-#include"dive.h"
-#include"lexer.h"
+#include "kriging.h"
+#include "dive.h"
+#include "lexer.h"
 
 double kriging::semivariogram(double dist)
 {
-		if(dist<range)
-		gamma = variance*((3.0*dist)/(2.0*range) - 0.5*pow(dist/range,3.0));
-		
-		if(dist>=range)
-		gamma = variance;
+    if(dist<range)
+    gamma = variance*((3.0*dist)/(2.0*range) - 0.5*pow(dist/range,3.0));
+    else if(dist>=range)
+    gamma = variance;
 
-		return gamma;
+    return gamma;
 }
