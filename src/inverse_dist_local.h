@@ -40,7 +40,7 @@ public:
     void start(lexer*,dive*,int,double*,double*,double*,double*,double*,int,int,double**) override final;
 
 private:
-    double gxy(lexer*,dive*,double*,double*,double*,double*,double*,int,int,double**);
+    double gxy(lexer*,dive*,int,int,double*,double*,double*,double*,double*,int,int);
     void setup(lexer*,dive*,double*,double*,double*,double*,double*,int,int);
 
     double xmin,xmax,ymin,ymax,zmin,zmax;
