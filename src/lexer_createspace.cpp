@@ -190,10 +190,10 @@ void lexer::createspace()
     
     cout<<"DXM: "<<DXM<<endl;
 
-    cout<<"xma:"<<xma<<" yma: "<<yma<<" zma: "<<zma<<endl;
-    cout<<"xmin:"<<xmin<<" ymin: "<<ymin<<" zmin: "<<zmin<<endl;
-    cout<<"xmax:"<<xmax<<" ymax: "<<ymax<<" zmax: "<<zmax<<endl;
-    cout<<"knox:"<<knox<<" knoy: "<<knoy<<" knoz: "<<knoz<<endl;
+    cout<<"xma: "<<xma<<" yma: "<<yma<<" zma: "<<zma<<endl;
+    cout<<"xmin: "<<xmin<<" ymin: "<<ymin<<" zmin: "<<zmin<<endl;
+    cout<<"xmax: "<<xmax<<" ymax: "<<ymax<<" zmax: "<<zmax<<endl;
+    cout<<"knox: "<<knox<<" knoy: "<<knoy<<" knoz: "<<knoz<<endl;
 	cout<<"base_cellnum3D: "<<knox*knoy*knoz<<endl;
     cout<<"base_cellnum2D: "<<knox*knoy<<endl;
 	
@@ -214,6 +214,6 @@ void lexer::tri_space()
 	Darray(trivec_y,trinum);
 	Darray(trivec_z,trinum);
     
-    cout<<"TRINUM:  "<<trinum<<endl;
+    cout<<"TRINUM: "<<trinum<<endl;
   
 }
