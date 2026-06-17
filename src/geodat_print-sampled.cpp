@@ -20,13 +20,13 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 Author: Hans Bihs
 --------------------------------------------------------------------*/
 
-#include"geodat.h"
-#include"lexer.h"
-#include"dive.h"
-#include<iostream>
-#include<fstream>
-#include<sys/stat.h>
-#include<sys/types.h>
+#include "geodat.h"
+#include "lexer.h"
+#include "dive.h"
+#include <iostream>
+#include <fstream>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 void geodat::print_sampled(lexer* p, dive* a)
 {
@@ -34,21 +34,18 @@ void geodat::print_sampled(lexer* p, dive* a)
     int iin,offset[100];
     float ffn;
     int count;
-    
+
     cout<<"PRINT SAMPLED GEODAT "<<p->Np<<endl;
     
-	mkdir("./DIVEMesh_Geo",0777);
-    
+    mkdir("./DIVEMesh_Geo",0777);
+
     sprintf(name,"./DIVEMesh_Geo/geo_sampled.dat");
-    
+
     ofstream result;
-	result.open(name);
-    
+    result.open(name);
+
     for(n=0;n<p->Np;++n)
     {
-    result<<p->Xout(p->G10_x[n],p->G10_y[n])<<" "<<p->Yout(p->G10_x[n],p->G10_y[n])<<" "<<p->G10_z[n]<<endl;
+        result<<p->Xout(p->G10_x[n],p->G10_y[n])<<" "<<p->Yout(p->G10_x[n],p->G10_y[n])<<" "<<p->G10_z[n]<<endl;
     }
-    
-    
-    
 }
