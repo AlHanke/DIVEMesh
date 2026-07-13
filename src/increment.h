@@ -28,23 +28,17 @@ Author: Hans Bihs
 #include"iterators.h"
 #include"looping.h"
 
-#define PI 3.14159265359
+inline constexpr double PI = 3.14159265359;
 
 using namespace std;
 
-class increment
+struct increment
 {
-	public:
-	increment();
-	virtual ~increment();
-	static int i,j,k,aa,bb,cc,n,q;
-	static int qn;
-	static int xma,yma,zma;
-    static int marge;
-    static int margin;
-
-	int conv(double);
-	int equals(double,double);
-
+public:
+    increment() = default;
+    virtual ~increment() = default;
+    static inline int i = 0, j = 0, k = 0, aa = 0, bb = 0, cc = 0, n = 0, q = 0, qn = 0;
+    static constexpr int xma = 3, yma = 3, zma = 3;
+    static constexpr int marge = 5;
 };
 #endif
