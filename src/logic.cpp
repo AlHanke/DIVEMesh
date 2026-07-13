@@ -19,7 +19,8 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------
 Author: Hans Bihs
 --------------------------------------------------------------------*/
-#include"driver.h"
+
+#include"driver.h"
 #include"driver_headers.h"
 
 void driver::logic(lexer* p)
@@ -42,7 +43,7 @@ void driver::logic(lexer* p)
     pdd=new decomp();
     pprint=new print_grid(p);
     
-    pvtu = new print_vtu(p);
+    pvts = new print_vts(p);
 
     if(p->G10>0)
     pgeo = new geodat(p,a);
