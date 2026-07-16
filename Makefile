@@ -1,9 +1,9 @@
 TARGET   := DiveMESH
-CXX      := -g++
+CXX      := /opt/homebrew/opt/llvm/bin/clang++
 CXXFLAGS := -std=c++20
 LDFLAGS  := 
 
-OPENMP ?= 0
+OPENMP ?= 1
 
 ifeq ($(OPENMP),1)
 CXXFLAGS += -fopenmp
@@ -20,7 +20,7 @@ OBJECTS  := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 all: CXXFLAGS += -w -O3
 all: $(APP_DIR)/$(TARGET)
 
-debug: CXXFLAGS += -O0 -w -g -g3
+debug: CXXFLAGS += -O0 -Wall -g -g3
 debug: $(APP_DIR)/$(TARGET)
 
 $(OBJ_DIR)/%.o: %.cpp
