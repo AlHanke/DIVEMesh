@@ -265,7 +265,7 @@
         <File Name="print_grid.cpp"/>
         <File Name="print_vts.cpp"/>
         <File Name="print_debug.cpp"/>
-        <File Name="print_solid.cpp"/>
+        <File Name="print_stl.cpp"/>
         <File Name="print_bottom.cpp"/>
       </VirtualDirectory>
     </VirtualDirectory>

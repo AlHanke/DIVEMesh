@@ -32,20 +32,20 @@ class dive;
 
 using namespace std;
 
-class print_stl :  public increment
+class print_stl : public increment
 {
-
 public:
-	print_stl(lexer*,dive*);
-	virtual ~print_stl();
-	void solid_vtp(lexer*,dive*);
-	void solid_stl(lexer*,dive*);
+    print_stl(lexer*,dive*);
+    virtual ~print_stl() = default;
+    void solid_vtp(lexer*,dive*);
+    void solid_stl(lexer*,dive*);
     void topo_vtp(lexer*,dive*);
     void topo_stl(lexer*,dive*);
 
 private:
-
-    char name[100],pname[100],epsvar[100];
+    void write_stl(lexer*,dive*);
+    void write_vtp(lexer*,dive*);
+    char name[100];
     int n,iin,offset[100];
     float ffn;
     double ddn;
