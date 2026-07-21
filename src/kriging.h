@@ -40,25 +40,32 @@ public:
     void start(lexer*,dive*,int,double*,double*,double*,double*,double*,int,int,double**) override final;
 
 private:
-    virtual double semivariogram(double);
-    virtual void rearrange(lexer*);
-    virtual void rearrange_b(lexer*);
+    void rearrange(lexer*);
+    void rearrange_b(lexer*);
 
-    virtual void invert(lexer*,double**, double**, double*, double*);
-    virtual void decomp(lexer*,double**, double**);
-    virtual void backsubstitution(lexer*,double**, double*);
-    virtual void matvec(lexer*,double**, double*, double*);
-    virtual void solve(lexer*,double**, double*, double*);
+    void invert(lexer*,double**, double**, double*, double*);
+    void decomp(lexer*,double**, double**);
+    void backsubstitution(lexer*,double**, double*);
+    void matvec(lexer*,double**, double*, double*);
+    void solve(lexer*,double**, double*, double*);
 
     void ini(lexer*,dive*,int,double*,double*,double*);
+
+    inline double semivariogram(double dist)
+    {
+        if(dist<range)
+            return variance*((3.0*dist)/(2.0*range) - 0.5*pow(dist/range,3.0));
+        else
+            return variance;
+    };
 
     double **A,**B;
     double*x,*b,*s,*row;
 
     int Np,n,m,q,r,count;
     double dist,xc,yc;
-    double xmin,xmax,ymin,ymax;
-    double mean, variance, range;
+
+    double variance, range;
     double gamma,aii;
 
     double vmax,sum,val;
