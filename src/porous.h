@@ -37,10 +37,9 @@ class porous : public geometry
 {
 public:
     porous(lexer*,dive*);
-    virtual ~porous();
+    virtual ~porous() = default;
 
-    virtual void start(lexer*,dive*);
-    void gcb_estimate(lexer*,dive*);
+    void start(lexer*,dive*);
 
 private:
     field porous_dist;
