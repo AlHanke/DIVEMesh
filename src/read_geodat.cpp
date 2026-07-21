@@ -35,13 +35,12 @@ void lexer::read_geodat()
 
         while(!geo.eof())
         {
-        if(G19==0)
-        geo>>val>>val>>val;
+            if(G19==0)
+            geo>>val>>val>>val;
+            else if(G19==1)
+            geo>>cval>>val>>val>>val;
 
-        if(G19==1)
-        geo>>cval>>val>>val>>val;
-
-        ++countG10;
+            ++countG10;
         }
         G10=countG10-1;
         cout<<"> geo entries: "<<G10<<endl;
@@ -51,7 +50,6 @@ void lexer::read_geodat()
         G10_y = new double[countG10];
         G10_z = new double[countG10];
 
-
         cout<<"read geo.dat"<<endl;
 
         geo.open("geo.dat", ios_base::in);
@@ -59,12 +57,11 @@ void lexer::read_geodat()
         countG10=0;
         while(!geo.eof()&&countG10<G10)
         {
-        if(G19==0)
-        geo>>G10_x[countG10]>>G10_y[countG10]>>G10_z[countG10];
-
-        if(G19==1)
-        geo>>cval>>G10_x[countG10]>>G10_y[countG10]>>G10_z[countG10];
-        ++countG10;
+            if(G19==0)
+            geo>>G10_x[countG10]>>G10_y[countG10]>>G10_z[countG10];
+            else if(G19==1)
+            geo>>cval>>G10_x[countG10]>>G10_y[countG10]>>G10_z[countG10];
+            ++countG10;
         }
 
         geo.close();
@@ -108,7 +105,6 @@ void lexer::read_geodat()
                 G10_y[n] = yval;
 			}
 		}
-
 
         if(G20>0)
         {
@@ -154,7 +150,6 @@ void lexer::read_geodat()
 
             B10=1;
 
-
             if(G20==2)
             {
                 for(n=0;n<G10;++n)
@@ -175,8 +170,7 @@ void lexer::read_geodat()
             }
         }
 
-
-         double Gx,Gy;
+        double Gx,Gy;
         for(n=0;n<G10;++n)
         {
             Gx = Xin(G10_x[n],G10_y[n]);
@@ -185,8 +179,5 @@ void lexer::read_geodat()
             G10_x[n] = Gx;
             G10_y[n] = Gy;
         }
-
-
-
 	}
 }
