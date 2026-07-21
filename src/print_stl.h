@@ -41,7 +41,7 @@ public:
 	void solid_vtp(lexer*,dive*);
 	void solid_stl(lexer*,dive*);
     void topo_vtp(lexer*,dive*);
-	void topo_stl(lexer*,dive*);
+    void topo_stl(lexer*,dive*);
 
 private:
 
@@ -52,5 +52,3 @@ private:
 };
 
 #endif
-
-
