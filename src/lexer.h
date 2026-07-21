@@ -175,8 +175,6 @@ public:
     int *M31,*M32,*M33;
     double M41, M45;
 
-    int P10;
-
 
     // solid
     int S1,S2,S3,S5,S6,S7,S9,S9_1,S10,S11,S12,S18;
