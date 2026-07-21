@@ -20,9 +20,9 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 Author: Hans Bihs
 --------------------------------------------------------------------*/
 
-#include"inverse_dist.h"
-#include"dive.h"
-#include"lexer.h"
+#include "inverse_dist.h"
+#include "dive.h"
+#include "lexer.h"
 
 inverse_dist::inverse_dist(lexer *p, dive *a)
 {
