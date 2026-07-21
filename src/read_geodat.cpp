@@ -19,7 +19,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------
 Author: Hans Bihs
 --------------------------------------------------------------------*/
-#include"lexer.h"
+#include "lexer.h"
 
 void lexer::read_geodat()
 {
@@ -66,24 +66,24 @@ void lexer::read_geodat()
 
         geo.close();
 
-		if(G13>0)
-		{
-            xmin=+1.0e19;
-            ymin=+1.0e19;
-            zmin=+1.0e19;
+        if(G13>0)
+        {
+            xmin = +1.0e19;
+            ymin = +1.0e19;
+            zmin = +1.0e19;
 
-            xmax=-1.0e19;
-            ymax=-1.0e19;
-            zmax=-1.0e19;
+            xmax = -1.0e19;
+            ymax = -1.0e19;
+            zmax = -1.0e19;
 
             for(n=0;n<G10;++n)
             {
-                xmax=MAX(xmax,G12_x*G10_x[n]);
-                xmin=MIN(xmin,G12_x*G10_x[n]);
-                ymax=MAX(ymax,G12_y*G10_y[n]);
-                ymin=MIN(ymin,G12_y*G10_y[n]);
-                zmax=MAX(zmax,G12_z*G10_z[n]);
-                zmin=MIN(zmin,G12_z*G10_z[n]);
+                    xmax = MAX(xmax,G12_x*G10_x[n]);
+                    xmin = MIN(xmin,G12_x*G10_x[n]);
+                    ymax = MAX(ymax,G12_y*G10_y[n]);
+                    ymin = MIN(ymin,G12_y*G10_y[n]);
+                    zmax = MAX(zmax,G12_z*G10_z[n]);
+                    zmin = MIN(zmin,G12_z*G10_z[n]);
             }
 
             if(G14==0)
@@ -92,12 +92,12 @@ void lexer::read_geodat()
                 G14_y = ymin + 0.5*(ymax-ymin);
             }
 
-			// rotate geodat points
-			G13_phi	 = G13_phi*PI/180.0;
+            // rotate geodat points
+            G13_phi = G13_phi*PI/180.0;
 
-			double xval,yval;
-			for(n=0;n<G10;++n)
-			{
+            double xval, yval;
+            for(n=0;n<G10;++n)
+            {
                 xval = G14_x + (G10_x[n]-G14_x)*cos(G13_phi) - (G10_y[n]-G14_y)*sin(G13_phi);
                 yval = G14_y + (G10_x[n]-G14_x)*sin(G13_phi) + (G10_y[n]-G14_y)*cos(G13_phi);
 
@@ -108,13 +108,13 @@ void lexer::read_geodat()
 
         if(G20>0)
         {
-            xmin=+1.0e19;
-            ymin=+1.0e19;
-            zmin=+1.0e19;
+            xmin = +1.0e19;
+            ymin = +1.0e19;
+            zmin = +1.0e19;
 
-            xmax=-1.0e19;
-            ymax=-1.0e19;
-            zmax=-1.0e19;
+            xmax = -1.0e19;
+            ymax = -1.0e19;
+            zmax = -1.0e19;
 
             for(n=0;n<G10;++n)
             {
@@ -128,9 +128,9 @@ void lexer::read_geodat()
 
             if(B10==0)
             {
-                B10=1;
-                B10_xs = new double[B10];
-                B10_xe = new double[B10];
+                    B10 = 1;
+                    B10_xs = new double[B10];
+                    B10_xe = new double[B10];
 
                 B10_ys= new double[B10];
                 B10_ye= new double[B10];
@@ -148,7 +148,7 @@ void lexer::read_geodat()
             B10_zs[0] = zmin-G21_z;
             B10_ze[0] = zmax+G22_z;
 
-            B10=1;
+            B10 = 1;
 
             if(G20==2)
             {
@@ -170,7 +170,7 @@ void lexer::read_geodat()
             }
         }
 
-        double Gx,Gy;
+        double Gx, Gy;
         for(n=0;n<G10;++n)
         {
                 Gx = Xin(G10_x[n],G10_y[n]);
