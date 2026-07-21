@@ -45,8 +45,8 @@ public:
     intfield subgrid;      // for all water cells: number of subgrid
     field2d topobed,solidbed;
     field2d bedlevel;      // combined bedlevel
-    field2d zstl_max,zstl_min;
     field2d dataset;
+    field2d zstl_min,zstl_max;
     intfield2d flagslice,subslice;
 
     int knox,knoy,knoz;
