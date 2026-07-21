@@ -38,7 +38,7 @@ class print_stl_geodat :  public increment
 public:
 	print_stl_geodat(lexer*,dive*);
 	virtual ~print_stl_geodat();
-    
+
 	void print_geo(lexer*,dive*);
 
 private:
@@ -50,5 +50,3 @@ private:
 };
 
 #endif
-
-
