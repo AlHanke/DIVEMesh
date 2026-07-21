@@ -38,7 +38,6 @@ using namespace std;
 class lexer : public resize_class, public coordinates
 {
 public:
-
     lexer();
     virtual ~lexer();
 
