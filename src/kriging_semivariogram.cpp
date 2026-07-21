@@ -28,7 +28,7 @@ double kriging::semivariogram(double dist)
 {
 		if(dist<range)
 		gamma = variance*((3.0*dist)/(2.0*range) - 0.5*pow(dist/range,3.0));
-		
+
 		if(dist>=range)
 		gamma = variance;
 

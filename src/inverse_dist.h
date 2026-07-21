@@ -45,11 +45,8 @@ private:
 
     double g,wsum,dist;
     double xc,yc;
-    
+
 
 };
 
 #endif
-
-
-
