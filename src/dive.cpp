@@ -170,12 +170,9 @@ dive::dive(lexer* p) : flag(p),solid(p),solid_dist(p),
     Iarray(tot_gcbextra,p->M10+2);
 
 
-cout<<'.'<<endl;
-
-
+    cout<<'.'<<endl;
 }
 
 dive::~dive()
 {
-
 }
