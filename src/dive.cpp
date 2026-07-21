@@ -48,9 +48,9 @@ dive::dive(lexer* p) : flag(p),solid(p),solid_dist(p),
     maxknox=MAX(maxknox,p->knoy);
     maxknox=MAX(maxknox,p->knoz);
 
-	p->Iarray(subknox,p->M10+1);
-	p->Iarray(subknoy,p->M10+1);
-	p->Iarray(subknoz,p->M10+1);
+    p->Iarray(subknox,p->M10+1);
+    p->Iarray(subknoy,p->M10+1);
+    p->Iarray(subknoz,p->M10+1);
 
     incount=0;
     utcount=0;
@@ -66,45 +66,45 @@ dive::dive(lexer* p) : flag(p),solid(p),solid_dist(p),
     para5count=0;
     para6count=0;
 
-	Iarray(mpi_index,p->M10+1);
-	Iarray(mpi_edges,(p->M10+1)*6);
+    Iarray(mpi_index,p->M10+1);
+    Iarray(mpi_edges,(p->M10+1)*6);
 
 
-	Iarray(in,p->M10+1);
-	Iarray(ut,p->M10+1);
-	Iarray(fsf,p->M10+1);
-	Iarray(wall,p->M10+1);
-	Iarray(bed,p->M10+1);
+    Iarray(in,p->M10+1);
+    Iarray(ut,p->M10+1);
+    Iarray(fsf,p->M10+1);
+    Iarray(wall,p->M10+1);
+    Iarray(bed,p->M10+1);
 
-	Iarray(para1,p->M10+1);
-	Iarray(para2,p->M10+1);
-	Iarray(para3,p->M10+1);
-	Iarray(para4,p->M10+1);
-	Iarray(para5,p->M10+1);
-	Iarray(para6,p->M10+1);
-	Iarray(paraco1,p->M10+1);
-	Iarray(paraco2,p->M10+1);
-	Iarray(paraco3,p->M10+1);
-	Iarray(paraco4,p->M10+1);
-	Iarray(paraco5,p->M10+1);
-	Iarray(paraco6,p->M10+1);
+    Iarray(para1,p->M10+1);
+    Iarray(para2,p->M10+1);
+    Iarray(para3,p->M10+1);
+    Iarray(para4,p->M10+1);
+    Iarray(para5,p->M10+1);
+    Iarray(para6,p->M10+1);
+    Iarray(paraco1,p->M10+1);
+    Iarray(paraco2,p->M10+1);
+    Iarray(paraco3,p->M10+1);
+    Iarray(paraco4,p->M10+1);
+    Iarray(paraco5,p->M10+1);
+    Iarray(paraco6,p->M10+1);
 
     Iarray(paraslice1,p->M10+1);
-	Iarray(paraslice2,p->M10+1);
-	Iarray(paraslice3,p->M10+1);
-	Iarray(paraslice4,p->M10+1);
+    Iarray(paraslice2,p->M10+1);
+    Iarray(paraslice3,p->M10+1);
+    Iarray(paraslice4,p->M10+1);
 
     Iarray(paracoslice1,p->M10+1);
-	Iarray(paracoslice2,p->M10+1);
-	Iarray(paracoslice3,p->M10+1);
-	Iarray(paracoslice4,p->M10+1);
+    Iarray(paracoslice2,p->M10+1);
+    Iarray(paracoslice3,p->M10+1);
+    Iarray(paracoslice4,p->M10+1);
 
-	Iarray(nbpara1,p->M10+1);
-	Iarray(nbpara2,p->M10+1);
-	Iarray(nbpara3,p->M10+1);
-	Iarray(nbpara4,p->M10+1);
-	Iarray(nbpara5,p->M10+1);
-	Iarray(nbpara6,p->M10+1);
+    Iarray(nbpara1,p->M10+1);
+    Iarray(nbpara2,p->M10+1);
+    Iarray(nbpara3,p->M10+1);
+    Iarray(nbpara4,p->M10+1);
+    Iarray(nbpara5,p->M10+1);
+    Iarray(nbpara6,p->M10+1);
 
 
     for(n=0;n<p->M10+1;n++)
@@ -141,28 +141,28 @@ dive::dive(lexer* p) : flag(p),solid(p),solid_dist(p),
     maxsurf =int((knox*knoy + knox*knoz + knoy*knoz));
 
 
-	i_dir=j_dir=k_dir=0;
+    i_dir=j_dir=k_dir=0;
 
-	if(p->knox>1 || p->B5!=1)
-	i_dir=1;
+    if(p->knox>1 || p->B5!=1)
+    i_dir=1;
 
-	if(p->knoy>1 || p->B5!=1)
-	j_dir=1;
+    if(p->knoy>1 || p->B5!=1)
+    j_dir=1;
 
-	if(p->knoz>1 || p->B5!=1)
-	k_dir=1;
+    if(p->knoz>1 || p->B5!=1)
+    k_dir=1;
 //object print
 
 
-	int polyval=1e6;
+    int polyval=1e6;
 
-	Iarray(polygon,polyval,5);
-	Iarray(numvert,5*polyval);
-	Iarray(polygon_offset,5*polyval);
-	Darray(vertice,5*polyval,3);
+    Iarray(polygon,polyval,5);
+    Iarray(numvert,5*polyval);
+    Iarray(polygon_offset,5*polyval);
+    Darray(vertice,5*polyval,3);
 
 
-	Iarray(solid_gcb,p->M10+2);
+    Iarray(solid_gcb,p->M10+2);
     Iarray(topo_gcb,p->M10+2);
 
     Iarray(solid_gcbextra,p->M10+2);
