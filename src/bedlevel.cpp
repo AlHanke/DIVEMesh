@@ -24,11 +24,9 @@ Author: Hans Bihs
 #include"dive.h"
 #include"lexer.h"
 
-bedlevel::bedlevel(lexer *p, dive *a)
-{
-}
+using namespace std;
 
-bedlevel::~bedlevel()
+bedlevel::bedlevel(lexer *p, dive *a)
 {
 }
 
