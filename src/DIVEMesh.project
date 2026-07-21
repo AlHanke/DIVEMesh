@@ -174,7 +174,6 @@
         <File Name="surface_gcbest.cpp"/>
         <File Name="surface_plate.cpp"/>
         <File Name="surface.cpp"/>
-        <File Name="surface_dir.cpp"/>
         <File Name="surface_solid.cpp"/>
       </VirtualDirectory>
       <VirtualDirectory Name="Slice">

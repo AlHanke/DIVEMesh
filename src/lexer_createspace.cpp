@@ -32,33 +32,22 @@ void lexer::createspace()
         knoy = std::round((ymax-ymin)/dx);
         knoz = std::round((zmax-zmin)/dx);
     }
-    
-    if(B2==1)
+    else if(B2==1)
     {
         knox = B2_knox;
         knoy = B2_knoy;
         knoz = B2_knoz;
     }
-    
+
     if(B101==8)
-    knox = B121_N1 + B121_N2 + B121_N3;
-    
-    if(B102==8)
-    knoy = B122_N1 + B122_N2 + B122_N3;
-    
-    if(B103==8)
-    knoz = B123_N1 + B123_N2 + B123_N3;
-    
-    if(B101==9)
-    knox = B124_N1 + B124_N2 + B124_N3;
-    
-    if(B102==9)
-    knoy = B125_N1 + B125_N2 + B125_N3;
-    
-    if(B103==9)
-    knoz = B126_N1 + B126_N2 + B126_N3;
-    
-    if(B101==10)
+    {
+        knox = B121_N1 + B121_N2 + B121_N3;
+    }
+    else if(B101==9)
+    {
+        knox = B124_N1 + B124_N2 + B124_N3;
+    }
+    else if(B101==10)
     {
         char name[100];
         int count;
@@ -72,7 +61,6 @@ void lexer::createspace()
         if(!file)
         {
             cout<<endl<<("no 'x-spacing.dat' file found")<<endl<<endl;
-
         }
         
         val=0.0;
@@ -89,12 +77,23 @@ void lexer::createspace()
         
         knox=count-1;
         
-        //cout<<"val0 | val "<<val0<<" "<<val<<endl;
         if(val0==val)
         knox--;
     }
+    else if (B101 == 11)
+    {
+        knox = cellBasedSpacing(xmin, xmax, B127_pf, B127_df, B127_dx_min, B127_dx_max, B127_r);
+    }
 
-    if(B102==10)
+    if(B102==8)
+    {
+        knoy = B122_N1 + B122_N2 + B122_N3;
+    }
+    else if(B102==9)
+    {
+        knoy = B125_N1 + B125_N2 + B125_N3;
+    }
+    else if(B102==10)
     {
         char name[100];
         int count;
@@ -108,7 +107,6 @@ void lexer::createspace()
         if(!file)
         {
             cout<<endl<<("no 'y-spacing.dat' file found")<<endl<<endl;
-
         }
         
         val=0.0;
@@ -125,12 +123,23 @@ void lexer::createspace()
         
         knoy=count-1;
         
-        //cout<<"val0 | val "<<val0<<" "<<val<<endl;
         if(val0==val)
         knoy--;
     }
-    
-    if(B103==10)
+    else if (B102 == 11)
+    {
+        knoy = cellBasedSpacing(ymin, ymax, B128_pf, B128_df, B128_dx_min, B128_dx_max, B128_r);
+    }
+
+    if(B103==8)
+    {
+        knoz = B123_N1 + B123_N2 + B123_N3;
+    }
+    else if(B103==9)
+    {
+        knoz = B126_N1 + B126_N2 + B126_N3;
+    }
+    else if(B103==10)
     {
         char name[100];
         int count;
@@ -145,7 +154,6 @@ void lexer::createspace()
         if(!file)
         {
             cout<<endl<<("no 'z-spacing.dat' file found")<<endl<<endl;
-
         }
         
         val=0.0;
@@ -162,32 +170,23 @@ void lexer::createspace()
         
         knoz=count-1;
         
-        //cout<<"val0 | val "<<val0<<" "<<val<<endl;
         if(val0==val)
         knoz--;
     }
-    
-    if (B101 == 11)
-    {
-        knox = cellBasedSpacing(xmin, xmax, B127_pf, B127_df, B127_dx_min, B127_dx_max, B127_r);
-    }
-
-    if (B102 == 11)
-    {
-        knoy = cellBasedSpacing(ymin, ymax, B128_pf, B128_df, B128_dx_min, B128_dx_max, B128_r);
-    }
-
-    if (B103 == 11)
+    else if (B103 == 11)
     {
         knoz = cellBasedSpacing(zmin, zmax, B129_pf, B129_df, B129_dx_min, B129_dx_max, B129_r);
     }    
     
     
     if(B2==0)
-    DXM = dx;
-    
-    if(B2==1)
-    DXM=dx = (1./3.0) * ((xmax-xmin)/double(knox) + (ymax-ymin)/double(knoy) + (zmax-zmin)/double(knoz));
+    {
+        DXM = dx;
+    }
+    else if(B2==1)
+    {
+        DXM=dx = (1./3.0) * ((xmax-xmin)/double(knox) + (ymax-ymin)/double(knoy) + (zmax-zmin)/double(knoz));
+    }
     
     cout<<"DXM: "<<DXM<<endl;
 
@@ -216,5 +215,4 @@ void lexer::tri_space()
 	Darray(trivec_z,trinum);
     
     cout<<"TRINUM:  "<<trinum<<endl;
-  
 }
